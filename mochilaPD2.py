@@ -1,4 +1,3 @@
-from math import floor
 
 
 def mochila_PD2(p, v, C, n):
@@ -25,30 +24,19 @@ def mochila_PD2(p, v, C, n):
                 if M[k][Vl]>(p[k-1] + M[k-1][Vl-v[k-1]]):
                     # Grava o peso minimo
                     M[k][Vl] = p[k-1] + M[k-1][Vl-v[k-1]]
+            for i in range(n+1):
+                print(M[i])
+            input()
     # Encontrar um peso que caiba na mochila
     for i in range(soma, -1, -1):
         if M[n][i] <= C:
             return i
 
-def mochila_Aprox(p, v, C, n, e):
-    vl = v
-    # Determina o item mais valioso
-    vMax = max(v)
-    # Determina o fator de aproximação
-    lamb = e * (vMax / n)
-    # Cria um novo vetor de pesos
-    for i in range(1, n):
-        vl[i] = floor(v[i] / lamb)
-    return mochila_PD2(p, vl, C, n)
+
                
-#Vetor de pesos
+
 p = [4,2,1,2,2]
-#Vetor de valores
 v = [2,1,3,4,1]
-#Capacidade da mochila
 C = 5
-#Quantidade de itens
 n = 5
-#Fator de aproximação
-e = 0.9
-print(f"Para a capacidade: {C}, o valor maximo é: {mochila_Aprox(p, v, C, n, e)}")
+print(f"Para a capicidade: {C}, o valor maximo é: {mochila_PD2(p, v, C, n)}")
